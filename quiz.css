@@ -1,0 +1,51 @@
+* body {
+    
+    background-image: url("../images/olympic.jpg");
+    
+  }
+  
+  #quizbox {
+
+    background-image: url("../images/");
+
+
+
+  }
+
+  #title {
+
+    font-family: 'Universe', cursive;
+    font-size: x-large;
+
+
+  }
+
+  #startbutton, #starthere {
+
+    font-family: 'Universe', cursive;
+    font-size: x-large;
+
+
+  }
+
+  #timeremaining {
+
+    font-family: 'Universe', cursive;
+    font-size: x-large;
+
+  }
+
+  #questionblock {
+
+    font-family: 'Universe', cursive;
+    font-size: x-large;
+
+  }
+
+  #correctanswer{
+
+    font-family: 'Universe', cursive;
+    font-size: x-large;
+
+    
+  }
