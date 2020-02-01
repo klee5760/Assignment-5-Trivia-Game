@@ -1,12 +1,15 @@
 * body {
     
-    background-image: url("../images/olympic.jpg");
+    background-image: url("../img/olympic.jpg");
     
+  }
+  .hide {
+    display: none;
   }
   
   #quizbox {
 
-    background-image: url("../images/");
+    background-image: url("../img/olympictorch.jpg");
 
 
 
