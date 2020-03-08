@@ -1,120 +1,146 @@
+var card = $("#quiz-area");
+var countStartNumber = 10;
 
-var music = document.getElementById("myAudio");
-var startScreen = $("#startScreen");
-var gameScreen = $("#gameScreen");
-var resultsScreen = $("#resultsScreen");
-var startBtn = $("#startBtn");
-var timerEl = $("#timer");
-var correctEl = $("#correct");
-var incorrectEl = $("#incorrect");
+//Variable to hold our setInterval
 
-var questionBox = $("#questionBox")
-var answerOne = $("#option1")
-var answerTwo = $("#option2")
-var answerThree = $("#option3")
-var answerFour = $("#option4")
-var answerBtns = $(".answerBtn")
+var timer;
 
+var game = {
+  answers: answers,
+  currentAnswer: 0,
+  counter: countStartNumber,
+  correct: 0,
+  incorrect: 0,
 
+  countdown: function() {
+    this.counter--;
+    $("#counter-number").text(this.counter);
+    if (game.counter === 0) {
+      console.log("Oops! Time's Up!");
+      this.timeUp();
+    }
+  },
 
-var correct, incorrect, timerCount, timerId, questionIndex;
+  loadAnswer: function() {
+    timer = setInterval(this.countdown.bind(this), 1000);
+    card.html("<h2>" + answers[this.currentAnswer].answer + "</h2>");
 
-startBtn.on("click", start);
-answerBtns.on("click", clickAnswer)
+    for (var i = 0; i < answers[this.currentAnswer].questions.length; i++) {
+      card.append(
+        "<button class='btn btn-default btn-lg m-1 response-btn' id=button data-name='" +
+          answers[this.currentAnswer].questions[i] +
+          "'>" +
+          answers[this.currentAnswer].questions[i] +
+          "</button>"
+      );
+    }
+  },
 
-function start() {
-  music.play()
+  nextAnswer: function() {
+    this.counter = window.countStartNumber;
+    $("counter-number").text(this.counter);
+    this.currentAnswer++;
+    this.loadAnswer.bind(this)();
+  },
 
-  questionIndex = 0;
-  correct = 0;
-  incorrect = 0;
-  timerCount = 20;
-  startScreen.addClass("hide");
-  gameScreen.removeClass("hide");
-  resultsScreen.addClass("hide");
-  loadQuestion();
-  timer();
-}
+  timeUp: function() {
+    this.incorrect++;
+    clearInterval(window.timer);
 
-function clickAnswer(){
-    var key = $(this).attr("id")
+    $("#counter-number").text(this.counter);
 
-    console.log(questions[questionIndex][key])
-    console.log(questions[questionIndex].answer)
-}
+    card.html("<h2>Beep! Beep! Beep!</h2>");
+    card.append(
+      "<h3>The correct Reponse was:" +
+        answers[this.currentAnswer].correctResponse
+    );
+    card.append("<img src'" + answers[this.currentAnswer].image + "'/>");
 
-function timer() {
-  clearInterval(timerId);
-  timerId = setInterval(function() {
-    timerCount--;
-    timerEl.text(timerCount);
-  }, 1 * 1000);
+    if (this.currentAnswer === answers.length - 1) {
+      setTimeout(this.results.bind(this), 3 * 1000);
+    } else {
+      setTimeout(this.nextAnswer.bind(this), 3 * 1000);
+    }
+  },
 
-  if (timercount<1){
+  results: function() {
+    clearInterval(window.timer);
 
-    clearInterval(counter);
-    $(timerEl).remove();
-    $(".answers button").remove();
-    $(answerBtns).remove();
-    $("#correctEl").append(correct);
-    $("#correctAnswer").append(correctAnswerDiv);
-    $(".correctAns").text("Wrong! The correct answer was: "+questions[key].correct);
-    $("#image").append(rightImage);
-    $(".img").html("<img src = 'asset/images/"+imgArray[loadQuestion]+".jpg' class='mx-auto' width='400px'>");
-    incorrect++;
-    loadquestion++;
+    card.html("<h2>All Finished! Here are the results!</h2>");
 
+    $("#counter-number").text(this.counter);
+
+    card.append("<h3>Corrects:" + this.correct + "</h3>");
+    card.append("<h3>Incorrects:" + this.incorrect + "</h3>");
+    card.append("<br><button id= 'start-over'>Restart</button>");
+  },
+
+  clicked: function(e) {
+    clearInterval(window.timer);
+    if (
+      $(e.target).attr("data-name") ===
+      answers[this.currentAnswer].correctResponse
+    ) {
+      this.responseCorrectly();
+    } else {
+      this.reponseInorrectly();
+    }
+  },
+
+  reponseInorrectly: function() {
+    this.incorrect++;
+
+    card.html("<h2>Nope!</h2>");
+    card.append(
+      "<h3>The Correct Response was: " +
+        answers[this.currentAnswer].correctResponse +
+        "</h3>"
+    );
+     card.append("<img src = './assets/img/alextrebek.jpg'/>");
+
+    if (this.currentAnswer === this.answers.length - 1) {
+      setTimeout(this.results.bind(this), 3 * 1000);
+    } else {
+      setTimeout(this.nextAnswer.bind(this), 3 * 1000);
+    }
+  },
+
+  responseCorrectly: function() {
+    clearInterval(window.timer);
+
+    this.correct++;
+
+    card.html("<h2>Correct!</h2>");
+    //  card.append("<img src ='" + answers[this.currentAnswer].image + "'/>");
+
+    if (this.currentAnswer === this.answers.length - 1) {
+      setTimeout(this.results.bind(this), 3 * 1000);
+    } else {
+      setTimeout(this.nextAnswer.bind(this), 3 * 1000);
+    }
+  },
+
+  reset: function() {
+    this.currentAnswer = 0;
+    this.counter = countStartNumber;
+    this.correct = 0;
+    this.incorrect = 0;
+    this.loadAnswer();
   }
-}
-
-function loadQuestion() {
-  var q = questions[questionIndex];
-  questionBox.text(q.question);
-  answerOne.text(q.option1);
-  answerTwo.text(q.option2);
-  answerThree.text(q.option3);
-  answerFour.text(q.option4);
 };
 
+//Click Events
 
-function rightOrWrong(){
-  var key = $(this).attr("id")
+$(document).on("click", "#start-over", game.reset.bind(game));
 
-    console.log(questions[questionIndex][key])
-    console.log(questions[questionIndex].answer)
+$(document).on("click", ".response-btn", function(e) {
+  console.log("Clicked");
+  game.clicked.bind(game, e)();
+});
 
-  if(selected === questions[key].correct) {
-    clearInterval(counter);
-    $(timerEl).remove();
-    $(".answers button").remove();
-    $(answerBtns).remove();
-    $("#correctEl").append(correct);
-    $("#correctAnswer").append(correctAnswerDiv);
-    $(".correctAns").text("Point!");
-    $("#image").append(rightImage);
-    $(".img").html("<img src = 'asset/images/"+imgArray[loadQuestion]+".jpg' class='mx-auto' width='400px'>");
-    correct++;
-    loadquestion++;
-  
-  
-  }  else{
-    clearInterval(counter);
-    $(timerEl).remove();
-    $(".answers button").remove();
-    $(answerBtns).remove();
-    $("#correctEl").append(correct);
-    $("#correctAnswer").append(correctAnswerDiv);
-    $(".correctAns").text("Wrong! The correct answer was: "+questions[key].correct);
-    $("#image").append(rightImage);
-    $(".img").html("<img src = 'asset/images/"+imgArray[loadQuestion]+".jpg' class='mx-auto' width='400px'>");
-    incorrect++;
-    loadquestion++;
-  
-  }
-
-  function finalScore(){
-
-    
-  }
-
-}
+$(document).on("click", "#start", function() {
+  $("#sub-wrapper").prepend(
+    "<h2>Time Remaining: <span id='counter-number'>10</span> Seconds</h2>"
+  );
+  game.loadAnswer.bind(game)();
+});

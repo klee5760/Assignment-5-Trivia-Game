@@ -1,90 +1,105 @@
-var questions = [
+var answers = [
   {
-    question: "Which country and when is the first modern Olympic held?",
-    option1: "Uruguay, 1930",
-    option2: "France, 1900",
-    option3: "United Kingdom, 1916",
-    option4: "Greece, 1896",
-    answer: "Greece, 1896"
+    answer: "This is the place where the first Olympic was held",
+    questions: [
+      "What is Greece?",
+      "What is France?",
+      "What is USA?",
+      "What is Italy?"
+    ],
+    correctResponse: "What is Greece?"
   },
   {
-    question:
-      "Who are the two people who won more than three gold medals in winter Olympics in a single game?",
-    option1: "Eric Heiden and Ole Einar Bjorndalen",
-    option2: "Stina Nilsson and Sixten Jernberg",
-    option3: "Marit Bjorgen and Aleksander Bolshunov",
-    option4: "Lyubov Yegorova and Cindy Klassen",
-    answer: "Eric Heiden and Ole Einar Bjorndalen"
+    answer: "He was the person who won most gold medal at single Olympic Games",
+    questions: [
+      "Who is Eric Heiden?",
+      "Who is Michael Phelps?",
+      "Who is Alvin Kraenzlein?",
+      "Who is Jeese Owens?"
+    ],
+    correctResponse: "Who is Michael Phelps?"
   },
   {
-    question:
-      "Which events in 2016 are the events revived since 1904 and 1924 respectively?",
-    option1: "Cricket and Polo",
-    option2: "Water Polo and Billiards",
-    option3: "Golf and Rugby Sevens",
-    option4: "Tennis and Baseball",
-    answer: "Golf and Rugby Sevens"
+    answer:
+      "This is the place where the Olympic game where exactly going to open after 100 years in 2024",
+    questions: [
+      "What is Sydney?",
+      "What is Rome?",
+      "What is Tokyo?",
+      "What is Paris?"
+    ],
+    correctResponse: "What is Paris?"
   },
   {
-    question:
-      "Which national capital city and when did it held winter Olympics?",
-    option1: "Tokyo, 1968",
-    option2: "New York, 1924",
-    option3: "Amsterdam, 1948",
-    option4: "Oslo, 1952",
-    answer: "Oslo, 1952"
+    answer:
+      "This is the organization who held Israeli Olympic team members as hostage in 1972 Munich massacre",
+    questions: [
+      "What is Abu Nidal Organization?",
+      "What is National Liberation Army?",
+      "What is the Black September?",
+      "What is Caucasus Emirate?"
+    ],
+    correctResponse: "What is the Black September?"
   },
   {
-    question:
-      "Which city was the first city and when did it to be held in Southern Hemisphere?",
-    option1: "Sydney, 2000",
-    option2: "Melbourne, 1956",
-    option3: "Wellington, 1976",
-    option4: "Auckland, 1968",
-    answer: "Melbourne, 1956"
+    answer: "He was the composer of the Olympic Anthem song ",
+    questions: [
+      "Who is Leo Arnaud?",
+      "Who is Freddie Mercury?",
+      "Who is John Williams?",
+      "Who is Spyridon Samaras?"
+    ],
+    correctResponse: "Who is Spyridon Samaras?"
   },
   {
-    question:
-      "In 1972 Munich Massacre incident, what is the name of terrorist group and which country did they come from?",
-    option1: "Abhinav Bharat, India",
-    option2: "Fatherland and Liberty, Iran",
-    option3: "Black September Organization, Palestine",
-    option4: "Aryan Republican Army, Ireland",
-    answer: "Black September Organization, Palestine"
+    answer: "This is the country who won most titles in World Cup",
+    questions: [
+      "What is France?",
+      "What is Germany?",
+      "What is Brazil?",
+      "What is Italy?"
+    ],
+    correctResponse: "What is Brazil?"
   },
   {
-    question: "Who and when did the Olympic theme 'Bugler's Dream'composed?",
-    option1: "Celine Dion, 1948",
-    option2: "Christopher Cross, 1962",
-    option3: "John Williams, 1968",
-    option4: "Leo Arnaud, 1958",
-    answer: "Leo Arnaud, 1958"
+    answer: "This is the country who opened the first World Cup",
+    questions: [
+      "What is England?",
+      "What is Italy?",
+      "What is Germany?",
+      "What is Uruguay?"
+    ],
+    correctResponse: "What is Uruguay?"
   },
   {
-    question:
-      "Which city and when did it held the Olympic before and hold again after exactly 100 years?",
-    option1: "Rome, 1936",
-    option2: "Vancouver, 1932",
-    option3: "Los Angeles, 1928",
-    option4: "Paris, 1924",
-    answer: "Paris, 1924"
+    answer: "He is the person who has the kiss of death",
+    questions: [
+      "Who is Maradona?",
+      "Who is Ronaldo?",
+      "Who is Pele?",
+      "Who is Suarez?"
+    ],
+    correctResponse: "Who is Pele?"
   },
   {
-    question:
-      "The Olympic Hymn was sung originally in Greek. When and what city was the song first sung performed by English?",
-    option1: "Squaw Valley,1960",
-    option2: "Rome, 1960",
-    option3: "Sapporo, 1972",
-    option4: "London, 1948",
-    answer: "Squaw Valley,1960"
+    answer:
+      "This was the year which the World Cup extended from original 16 teams to 24",
+    questions: [
+      "What is 1998?",
+      "What is 1982?",
+      "What is 2002?",
+      "What is 1990?"
+    ],
+    correctResponse: "What is 1982?"
   },
   {
-    question:
-      "What was the name and what kind of a character was the first official Olympic mascot?",
-    option1: "Schuss, Stylized Skier",
-    option2: "Schneemann, Snowman",
-    option3: "Waldi,Dachshund Dog",
-    option4: "Vucko, Little Wolf",
-    answer: "Waldi,Dachshund Dog"
+    answer: "This is the singer who sang 'A cup of life' in 1998",
+    questions: [
+      "Who is K'naan?",
+      "Who is Pitbull?",
+      "Who is Nicky Jam?",
+      "Who is Ricky Martin?"
+    ],
+    correctResponse: "Who is Ricky Martin?"
   }
 ];
